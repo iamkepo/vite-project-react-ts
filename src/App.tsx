@@ -1,21 +1,20 @@
-import { Route, HashRouter as Router, Routes } from "react-router-dom"
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import EmptyLayout from "./layouts/EmptyLayout"
-// import DashboardLayout from "./layouts/DashboardLayout"
-import HomeView from "./views/HomeView"
-import { NoMatch } from "./views/NoMatch"
+import DashboardLayout from "./layouts/DashboardLayout"
+import HomePage from "./pages/HomePage"
+import NoMatch from "./pages/NoMatch"
 
-function App(): JSX.Element {
-
+function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<EmptyLayout />}>
-          <Route index element={<HomeView />} />
-          {/* <Route path="dashboard/" element={<DashboardLayout />}>
-          </Route> */}
-
-          <Route path='*' element={<NoMatch />} />
-        </Route>      
+          <Route path=":lang/" element={<DashboardLayout />}>
+            <Route index element={<HomePage />} />
+          </Route>
+        </Route>     
+         
+        <Route path='*' element={<NoMatch />} />
       </Routes>
     </Router>
   )
